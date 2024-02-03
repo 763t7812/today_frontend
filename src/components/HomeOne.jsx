@@ -25,6 +25,7 @@ import Image from 'next/image';
 
 import { Socket, io } from "socket.io-client";
 
+// const URL = "https://check2-djcs.onrender.com";
 const URL = "http://localhost:4000";
 export default function HomeOne() {
 
@@ -103,6 +104,8 @@ export default function HomeOne() {
         videoRef.current.play();
         // MediaStream
     }
+    // let pc;
+
 
     useEffect(() => {
         const socket = io(URL);
@@ -268,10 +271,10 @@ export default function HomeOne() {
             }, 5000)
         });
 
-        socket.on("answer", ({ roomId, sdp: remoteSdp }) => {
+        socket.on("answer", ({ roomId, sdp }) => {
             setLobby(false);
             setSendingPc(pc => {
-                pc?.setRemoteDescription(remoteSdp)
+                pc?.setRemoteDescription(sdp)
                 return pc;
             });
             //console.log("loop closed");
@@ -313,6 +316,8 @@ export default function HomeOne() {
 
         setSocket(socket)
     }, [name, reffresh, joined])
+
+
 
     useEffect(() => {
         if (localVideoRef.current) {
@@ -378,7 +383,7 @@ export default function HomeOne() {
 
     console.log(Text)
 
-    const reload_me=()=>{
+    const reload_me = () => {
         window.location.reload()
     }
     return (
@@ -397,7 +402,7 @@ export default function HomeOne() {
                                     All users are connected!
                                 </div>
                             }
-                            <button className='h-full text-white  bg-red-500 p-10' onClick={()=>reload_me()}>Close Connection</button>
+                            <button className='h-full text-white  bg-red-500 p-10' onClick={() => reload_me()}>Close Connection</button>
                         </div>
                     </div>
                 )
@@ -471,9 +476,10 @@ export default function HomeOne() {
                     <div className='items-baseline'>
                         <Image src={setting} width={30} height={30} />
                     </div>
-                    <div className='flex flex-col gap-3 h-auto '>
+                    {/* msg */}
+                    {ShowVideo &&<div className='flex flex-col gap-3 h-auto '>
                         {
-                            conversation&&conversation?.length > 0 ?null: <>
+                            conversation && conversation?.length > 0 ? null : <>
                                 <h2 className='underline text-xl text-dark font-semibold'>Report Bugs and Issue
                                 </h2>
                                 <p> 9,851,548 joined Camsurf <span>Special Offer, Get Plus Today!</span></p>
@@ -481,7 +487,7 @@ export default function HomeOne() {
                         }
                         <div className={`flex flex-col  overflow-y-auto `} >
                             {
-                                conversation&&conversation?.length >0
+                                conversation && conversation?.length > 0
                             }
                             {conversation.map((x, index) => (
                                 <div key={index} style={{ textAlign: x.includes("Stranger") ? 'left' : 'right' }}>
@@ -507,7 +513,7 @@ export default function HomeOne() {
                             style={{ width: '600px' }}  // Adjust the width value as needed
                         />
                         {/* </form> */}
-                    </div>
+                    </div>}
                     {/* <div style={{ width: '100%', height: "400px", backgroundColor: 'gray' }}>
                         <div style={{ width: "100%", height: "90%", backgroundColor: "lightgrey" }}>
                             {conversation.map((x, index) => (
