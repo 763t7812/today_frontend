@@ -477,7 +477,7 @@ export default function HomeOne() {
                         <Image src={setting} width={30} height={30} />
                     </div>
                     {/* msg */}
-                    {ShowVideo &&<div className='flex flex-col gap-3 h-auto '>
+                    <div className='flex flex-col gap-3 h-auto '>
                         {
                             conversation && conversation?.length > 0 ? null : <>
                                 <h2 className='underline text-xl text-dark font-semibold'>Report Bugs and Issue
@@ -513,7 +513,7 @@ export default function HomeOne() {
                             style={{ width: '600px' }}  // Adjust the width value as needed
                         />
                         {/* </form> */}
-                    </div>}
+                    </div>
                     {/* <div style={{ width: '100%', height: "400px", backgroundColor: 'gray' }}>
                         <div style={{ width: "100%", height: "90%", backgroundColor: "lightgrey" }}>
                             {conversation.map((x, index) => (
