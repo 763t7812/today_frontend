@@ -25,8 +25,8 @@ import Image from 'next/image';
 
 import { Socket, io } from "socket.io-client";
 
-// const URL = "https://check2-djcs.onrender.com";
-const URL = "http://localhost:4000";
+const URL = "https://check2-djcs.onrender.com";
+// const URL = "http://localhost:4000";
 export default function HomeOne() {
 
     const [isChecked, setIsChecked] = useState(false);
